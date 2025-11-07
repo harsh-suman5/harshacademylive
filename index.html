@@ -1,0 +1,652 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HARSH ACADEMY Live®️ - Future of Learning</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+     <link href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.min.css" rel="stylesheet">
+    <style>
+        body {
+            box-sizing: border-box;
+        }
+        
+        .neon-glow {
+            box-shadow: 0 0 20px rgba(139, 92, 246, 0.3), 0 0 40px rgba(139, 92, 246, 0.1);
+        }
+        
+        .floating-animation {
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+        
+        .morphing-bg {
+            background: linear-gradient(-45deg, #667eea, #764ba2, #f093fb, #f5576c);
+            background-size: 400% 400%;
+            animation: gradient 15s ease infinite;
+        }
+        
+        @keyframes gradient {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        
+        .glass-effect {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .hexagon {
+            width: 100px;
+            height: 100px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+        }
+        
+        .course-card-unique {
+            background: linear-gradient(145deg, #ffffff, #f0f0f0);
+            border-radius: 25px;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        
+        .course-card-unique::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(139, 92, 246, 0.1), transparent);
+            transition: left 0.5s;
+        }
+        
+        .course-card-unique:hover::before {
+            left: 100%;
+        }
+        
+        .course-card-unique:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
+        }
+        
+        .tech-pattern {
+            background-image: 
+                radial-gradient(circle at 25px 25px, rgba(139, 92, 246, 0.1) 2px, transparent 2px),
+                radial-gradient(circle at 75px 75px, rgba(139, 92, 246, 0.1) 2px, transparent 2px);
+            background-size: 100px 100px;
+        }
+        
+        .pulse-ring {
+            animation: pulse-ring 2s cubic-bezier(0.455, 0.03, 0.515, 0.955) infinite;
+        }
+        
+        @keyframes pulse-ring {
+            0% { transform: scale(0.8); opacity: 1; }
+            80%, 100% { transform: scale(1.2); opacity: 0; }
+        }
+        
+        .zigzag-border {
+            position: relative;
+        }
+        
+        .zigzag-border::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            right: 0;
+            height: 20px;
+            background: linear-gradient(45deg, transparent 33.33%, #667eea 33.33%, #667eea 66.66%, transparent 66.66%),
+                        linear-gradient(-45deg, transparent 33.33%, #764ba2 33.33%, #764ba2 66.66%, transparent 66.66%);
+            background-size: 20px 20px;
+        }
+        
+        .holographic-text {
+            background: linear-gradient(45deg, #667eea, #764ba2, #f093fb, #f5576c);
+            background-size: 400% 400%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: gradient 3s ease infinite;
+        }
+        
+        .orbit-animation {
+            animation: orbit 20s linear infinite;
+        }
+        
+        @keyframes orbit {
+            from { transform: rotate(0deg) translateX(150px) rotate(0deg); }
+            to { transform: rotate(360deg) translateX(150px) rotate(-360deg); }
+        }
+         
+                                :root {
+                                    --orbit-radius: 150px;
+                                    --orbit-size: 4rem;
+                                }
+                                @media (max-width: 1024px) {
+                                    :root { --orbit-radius: 110px; --orbit-size: 3.2rem; }
+                                }
+                                @media (max-width: 640px) {
+                                    :root { --orbit-radius: 70px; --orbit-size: 2.2rem; }
+                                }
+
+                                .orbit-container { position: absolute; inset: 0; pointer-events: none; }
+                                .orb {
+                                    position: absolute;
+                                    left: 50%;
+                                    top: 50%;
+                                    transform-origin: center;
+                                    animation: orbit-responsive var(--dur,20s) linear infinite;
+                                    display: block;
+                                    pointer-events: none;
+                                }
+                                .orb .ball {
+                                    width: var(--size, var(--orbit-size));
+                                    height: var(--size, var(--orbit-size));
+                                    border-radius: 9999px;
+                                    display: flex;
+                                    align-items: center;
+                                    justify-content: center;
+                                    transform: translateX(var(--radius, var(--orbit-radius)));
+                                    box-shadow: 0 8px 20px rgba(0,0,0,0.18);
+                                }
+
+                                @keyframes orbit-responsive {
+                                    from { transform: rotate(0deg) translateX(0) rotate(0deg); }
+                                    to   { transform: rotate(360deg) translateX(0) rotate(-360deg); }
+                                }
+
+                                /* apply rotation + translation using a nested element so translateX uses CSS variable */
+                                .orb { --radius: var(--orbit-radius); }
+                                .orb { animation-name: orbit-rotate; }
+                                @keyframes orbit-rotate {
+                                    from { transform: rotate(0deg); }
+                                    to   { transform: rotate(360deg); }
+                                }
+                                /* keep inner ball translated so it orbits while staying visually rotated */
+                                .orb .ball { transform: translateX(var(--radius)); }
+                            
+
+    </style>
+</head>
+<body class="bg-gray-900 text-white">
+    <!-- Floating Elements -->
+    <div class="fixed inset-0 overflow-hidden pointer-events-none z-0">
+        <div class="absolute top-20 left-10 hexagon floating-animation opacity-20"></div>
+        <div class="absolute top-40 right-20 w-16 h-16 bg-purple-500 rounded-full floating-animation opacity-30" style="animation-delay: -2s;"></div>
+        <div class="absolute bottom-40 left-1/4 w-12 h-12 bg-pink-500 rounded-full floating-animation opacity-25" style="animation-delay: -4s;"></div>
+        <div class="absolute top-1/3 right-1/3 hexagon floating-animation opacity-15" style="animation-delay: -1s;"></div>
+    </div>
+
+    <!-- Header -->
+    <header class="relative z-10">
+        <nav class="bg-blue bg-opacity-70 backdrop-blur-sm border-b border-purple-500">
+            <div class="container mx-auto px-6 py-4">
+                <div class="flex items-center justify-between">
+                    <div class="flex items-center space-x-4">
+                        <div class="relative">
+                            <div class="w-12 h-12 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full flex items-center justify-center neon-glow">
+                                <img src="../images/WhatsApp Image 2025-10-25 at 13.40.45.jpeg" alt="Harsh Academy logo" class="w-12 h-12 rounded-full object-cover"/>
+                            </div>
+                            <div class="absolute inset-0 w-12 h-12 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full pulse-ring"></div>
+                        </div>
+                        <div>
+                            <h1 class="text-2xl font-bold holographic-text">Harsh Academy</h1>
+                            <p class="text-xs text-purple-300">LIVE</p>
+                        </div>
+                    </div>
+                    <div class="hidden md:flex space-x-8">
+                        <a href="#courses" class="relative group">
+                            <span class="relative inline-block w-32 text-center px-6 py-2 rounded-full bg-gradient-to-r from-purple-600 via-pink-500 to-red-400 text-white font-semibold text-base shadow-md hover:shadow-lg hover:scale-105 transition-all duration-300">Courses</span>
+                            <div class="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-purple-500 to-pink-500 group-hover:w-full transition-all duration-300"></div>
+                        </a>
+                        <a href="#features" class="relative group">
+                            <span class="relative inline-block w-32 text-center px-6 py-2 rounded-full bg-gradient-to-r from-purple-600 via-pink-500 to-red-400 text-white font-semibold text-base shadow-md hover:shadow-lg hover:scale-105 transition-all duration-300">Features</span>
+                            <div class="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-purple-500 to-pink-500 group-hover:w-full transition-all duration-300"></div>
+                        </a>
+                        <a href="#contact" class="relative group">
+                            <span class="relative inline-block w-32 text-center px-6 py-2 rounded-full bg-gradient-to-r from-purple-600 via-pink-500 to-red-400 text-white font-semibold text-base shadow-md hover:shadow-lg hover:scale-105 transition-all duration-300">Contact</span>
+                            <div class="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-purple-500 to-pink-500 group-hover:w-full transition-all duration-300"></div>
+                        </a>
+                        <a href="#team" class="relative group">
+                            <span class="relative inline-block w-32 text-center px-6 py-2 rounded-full bg-gradient-to-r from-purple-600 via-pink-500 to-red-400 text-white font-semibold text-base shadow-md hover:shadow-lg hover:scale-105 transition-all duration-300">Our Team</span>
+                            <div class="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-purple-500 to-pink-500 group-hover:w-full transition-all duration-300"></div>
+                        </a>
+                        <!-- login  -->
+                        <a href="login.html" class="relative inline-block w-32 text-center px-6 py-2 rounded-full bg-gradient-to-r from-purple-600 via-pink-500 to-red-400 text-white font-semibold text-base shadow-md hover:shadow-lg hover:scale-105 transition-all duration-300">
+  <span class="relative z-10">Login</span>
+  <span class="absolute inset-0 rounded-full bg-white opacity-20 blur-sm group-hover:opacity-40 animate-pulse"></span>
+</a>
+                    </div>
+                    <div class="md:hidden">
+                        <button id="mobileMenuButton" class="text-white focus:outline-none">
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </nav>
+        <div id="mobileMenu" class="hidden md:hidden bg-blue bg-opacity-70 backdrop-blur-sm border-b border-purple-500">
+            <div class="flex flex-col space-y-2 px-6 py-4">
+                <a href="#courses" class="relative inline-block w-full text-center px-8 py-3 rounded-full bg-gradient-to-r from-purple-600 via-pink-500 to-red-400 text-white font-semibold text-lg shadow-md hover:shadow-lg hover:scale-105 transition-all duration-300">Courses</a>
+                <a href="#features" class="relative inline-block w-full text-center px-8 py-3 rounded-full bg-gradient-to-r from-purple-600 via-pink-500 to-red-400 text-white font-semibold text-lg shadow-md hover:shadow-lg hover:scale-105 transition-all duration-300">Features</a>
+                <a href="contact.html" class="relative inline-block w-full text-center px-8 py-3 rounded-full bg-gradient-to-r from-purple-600 via-pink-500 to-red-400 text-white font-semibold text-lg shadow-md hover:shadow-lg hover:scale-105 transition-all duration-300">Contact</a>
+                <a href="#team" class="relative inline-block w-full text-center px-8 py-3 rounded-full bg-gradient-to-r from-purple-600 via-pink-500 to-red-400 text-white font-semibold text-lg shadow-md hover:shadow-lg hover:scale-105 transition-all duration-300">Our Team</a>
+                <a href="login.html" class="relative inline-block w-full text-center px-8 py-3 rounded-full bg-gradient-to-r from-purple-600 via-pink-500 to-red-400 text-white font-semibold text-lg shadow-md hover:shadow-lg hover:scale-105 transition-all duration-300">Login</a>
+
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <main>
+        <section class="morphing-bg min-h-full pt-24 pb-20 relative overflow-hidden zigzag-border">
+            <div class="container mx-auto px-6 relative z-10">
+                <div class="flex flex-col lg:flex-row items-center">
+                    <div class="lg:w-1/2 text-center lg:text-left mb-12 lg:mb-0">
+                        <h2 class="text-6xl lg:text-7xl font-bold mb-6 leading-tight">
+                            <span class="block">Future of</span>
+                            <span class="holographic-text">Learning</span>
+                            <span class="block text-4xl lg:text-5xl mt-2">Starts Here</span>
+                        </h2>
+                        <p class="text-xl mb-8 text-purple-100 max-w-lg">Experience next-generation education with live interactive sessions, AI-powered learning, and industry used tools.</p>
+                        
+                        <div class="flex flex-wrap gap-4 mb-8 justify-center lg:justify-start">
+                            <div class="glass-effect px-4 py-2 rounded-full text-sm">🚀 Live Classes</div>
+                            <div class="glass-effect px-4 py-2 rounded-full text-sm">🎯 doubt sessions</div>
+                            <div class="glass-effect px-4 py-2 rounded-full text-sm">🏆 Test series/coding competetion</div>
+                        </div>
+                        
+                        <a href="#courses" class="inline-block bg-white text-purple-600 px-8 py-4 rounded-full font-bold text-lg hover:bg-purple-100 transition-all duration-300 neon-glow transform hover:scale-105">
+                            Explore Courses →
+                        </a>
+                    </div>
+                    
+                    <div class="lg:w-1/2 relative">
+                        <div class="relative w-80 h-80 mx-auto">
+                            <!-- Central Hub -->
+                            <div class="absolute inset-0 flex items-center justify-center">
+                                <div class="w-32 h-32 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full flex items-center justify-center neon-glow">
+                                    <span class="text-2xl">🎓</span>
+                                </div>
+                            </div>
+                            
+                            <!-- Orbiting Elements -->
+                            <!-- responsive orbiting elements -->
+                           
+                            <div class="orbit-container" aria-hidden="true">
+                                <div class="orb" style="--dur:20s; --radius:var(--orbit-radius);">
+                                    <div class="ball bg-gradient-to-r from-blue-500 to-purple-500 text-2xl">🤖</div>
+                                </div>
+
+                                <div class="orb" style="--dur:25s; animation-delay:-5s; --radius:calc(var(--orbit-radius) * 0.9);">
+                                    <div class="ball bg-gradient-to-r from-green-500 to-blue-500 text-2xl">🐍</div>
+                                </div>
+
+                                <div class="orb" style="--dur:30s; animation-delay:-10s; --radius:calc(var(--orbit-radius) * 0.75);">
+                                    <div class="ball bg-gradient-to-r from-pink-500 to-red-500 text-2xl">⚡</div>
+                                </div>
+
+                                <div class="orb" style="--dur:35s; animation-delay:-15s; --radius:calc(var(--orbit-radius) * 0.6);">
+                                    <div class="ball bg-gradient-to-r from-yellow-500 to-orange-500 text-2xl">🗄️</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Courses Section -->
+        <section id="courses" class="py-20 tech-pattern relative">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-16">
+                    <h2 class="text-5xl font-bold mb-4">
+                        <span class="holographic-text">Premium Courses</span>
+                    </h2>
+                    <p class="text-xl text-gray-300 max-w-3xl mx-auto">Cutting-edge curriculum designed by Harsh sir. All classes conducted live on Zoom with interactive sessions and personalized mentorship.</p>
+                </div>
+                
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <!-- AI & ML Course -->
+                    <div class="course-card-unique p-8 group">
+                        <div class="text-center mb-6">
+                            <div class="w-20 h-20 mx-auto bg-gradient-to-r from-purple-500 to-pink-500 rounded-full flex items-center justify-center text-4xl mb-4 group-hover:scale-110 transition-transform duration-300">🤖</div>
+                            <h3 class="text-2xl font-bold text-gray-800 mb-2">Introduction to AI & ML</h3>
+                            <div class="w-16 h-1 bg-gradient-to-r from-purple-500 to-pink-500 mx-auto rounded-full"></div>
+                        </div>
+                        <p class="text-gray-600 mb-6 text-center">Perfect starting point for beginners to learn AI/ML fundamentals and basic Python implementation.</p>
+                        <div class="text-center mb-6">
+                            <div class="text-sm text-gray-500 mb-2">⏱️ 8 weeks • 📊 Beginner Friendly</div>
+                            <div class="flex items-center justify-center space-x-2">
+                                <span class="text-3xl font-bold text-purple-600">₹1599.00</span>
+                                <span class="text-gray-400 line-through">₹19,999</span>
+                                <span class="bg-red-500 text-white px-2 py-1 rounded-full text-xs">92% OFF</span>
+                            </div>
+                        </div>
+                        <button onclick="enrollCourse('Introduction to AI & ML', 1499)" class="w-full bg-gradient-to-r from-purple-500 to-pink-500 text-white py-3 rounded-full font-semibold hover:from-purple-600 hover:to-pink-600 transition-all duration-300 transform hover:scale-105 neon-glow">
+                            Enroll Now
+                        </button>
+                    </div>
+
+                    <!-- Robotics Course -->
+                    <div class="course-card-unique p-8 group">
+                        <div class="text-center mb-6">
+                            <div class="w-20 h-20 mx-auto bg-gradient-to-r from-blue-500 to-cyan-500 rounded-full flex items-center justify-center text-4xl mb-4 group-hover:scale-110 transition-transform duration-300">🦾</div>
+                            <h3 class="text-2xl font-bold text-gray-800 mb-2">Robotics Fundamentals</h3>
+                            <div class="w-16 h-1 bg-gradient-to-r from-blue-500 to-cyan-500 mx-auto rounded-full"></div>
+                        </div>
+                        <p class="text-gray-600 mb-6 text-center">Learn robotics from scratch including sensors, actuators, programming, and building autonomous systems.</p>
+                        <div class="text-center mb-6">
+                            <div class="text-sm text-gray-500 mb-2">⏱️ 8 weeks • 📊 Beginner Level</div>
+                            <div class="flex items-center justify-center space-x-2">
+                                <span class="text-3xl font-bold text-blue-600">₹1599.00</span>
+                                <span class="text-gray-400 line-through">₹19,999</span>
+                                <span class="bg-red-500 text-white px-2 py-1 rounded-full text-xs">92% OFF</span>
+                            </div>
+                        </div>
+                        <button onclick="enrollCourse('Robotics Fundamentals', 1599)" class="w-full bg-gradient-to-r from-blue-500 to-cyan-500 text-white py-3 rounded-full font-semibold hover:from-blue-600 hover:to-cyan-600 transition-all duration-300 transform hover:scale-105 neon-glow">
+                            Enroll Now
+                        </button>
+                    </div>
+
+                    <!-- Python Course -->
+                    <div class="course-card-unique p-8 group">
+                        <div class="text-center mb-6">
+                            <div class="w-20 h-20 mx-auto bg-gradient-to-r from-green-500 to-emerald-500 rounded-full flex items-center justify-center text-4xl mb-4 group-hover:scale-110 transition-transform duration-300">🐍</div>
+                            <h3 class="text-2xl font-bold text-gray-800 mb-2">Python Mastery</h3>
+                            <div class="w-16 h-1 bg-gradient-to-r from-green-500 to-emerald-500 mx-auto rounded-full"></div>
+                        </div>
+                        <p class="text-gray-600 mb-6 text-center">Complete Python journey from basics to advanced topics including web development and automation.</p>
+                        <div class="text-center mb-6">
+                            <div class="text-sm text-gray-500 mb-2">⏱️ 10 weeks • 📊 All Levels</div>
+                            <div class="flex items-center justify-center space-x-2">
+                                <span class="text-3xl font-bold text-green-600">₹1119.00</span>
+                                <span class="text-gray-400 line-through">₹15,999</span>
+                                <span class="bg-red-500 text-white px-2 py-1 rounded-full text-xs">93% OFF</span>
+                            </div>
+                        </div>
+                        <button onclick="enrollCourse('Python Mastery', 799)" class="w-full bg-gradient-to-r from-green-500 to-emerald-500 text-white py-3 rounded-full font-semibold hover:from-green-600 hover:to-emerald-600 transition-all duration-300 transform hover:scale-105 neon-glow">
+                            Enroll Now
+                        </button>
+                    </div>
+
+                    <!-- C++ Course -->
+                    <div class="course-card-unique p-8 group">
+                        <div class="text-center mb-6">
+                            <div class="w-20 h-20 mx-auto bg-gradient-to-r from-orange-500 to-red-500 rounded-full flex items-center justify-center text-4xl mb-4 group-hover:scale-110 transition-transform duration-300">⚡</div>
+                            <h3 class="text-2xl font-bold text-gray-800 mb-2">C++ Programming</h3>
+                            <div class="w-16 h-1 bg-gradient-to-r from-orange-500 to-red-500 mx-auto rounded-full"></div>
+                        </div>
+                        <p class="text-gray-600 mb-6 text-center">Master C++ from fundamentals to advanced concepts including OOP, STL, and competitive programming.</p>
+                        <div class="text-center mb-6">
+                            <div class="text-sm text-gray-500 mb-2">⏱️ 10 weeks • 📊 Intermediate</div>
+                            <div class="flex items-center justify-center space-x-2">
+                                <span class="text-3xl font-bold text-orange-600">₹1119.00</span>
+                                <span class="text-gray-400 line-through">₹15,999</span>
+                                <span class="bg-red-500 text-white px-2 py-1 rounded-full text-xs">93% OFF</span>
+                            </div>
+                        </div>
+                        <button onclick="enrollCourse('C++ Programming', 1120)" class="w-full bg-gradient-to-r from-orange-500 to-red-500 text-white py-3 rounded-full font-semibold hover:from-orange-600 hover:to-red-600 transition-all duration-300 transform hover:scale-105 neon-glow">
+                            Enroll Now
+                        </button>
+                    </div>
+
+                    <!-- DSA Python -->
+                    <div class="course-card-unique p-8 group">
+                        <div class="text-center mb-6">
+                            <div class="w-20 h-20 mx-auto bg-gradient-to-r from-indigo-500 to-purple-500 rounded-full flex items-center justify-center text-4xl mb-4 group-hover:scale-110 transition-transform duration-300">📊</div>
+                            <h3 class="text-2xl font-bold text-gray-800 mb-2">DSA with Python</h3>
+                            <div class="w-16 h-1 bg-gradient-to-r from-indigo-500 to-purple-500 mx-auto rounded-full"></div>
+                        </div>
+                        <p class="text-gray-600 mb-6 text-center">Master data structures and algorithms with Python. Perfect for coding interviews and competitive programming.</p>
+                        <div class="text-center mb-6">
+                            <div class="text-sm text-gray-500 mb-2">⏱️ 14 weeks • 📊 Beginner Level</div>
+                            <div class="flex items-center justify-center space-x-2">
+                                <span class="text-3xl font-bold text-indigo-600">₹2500.00</span>
+                                <span class="text-gray-400 line-through">₹21,999</span>
+                                <!-- <span class="bg-red-500 text-white px-2 py-1 rounded-full text-xs">36% OFF</span> -->
+                            </div>
+                        </div>
+                        <button onclick="enrollCourse('DSA with Python', 899)" class="w-full bg-gradient-to-r from-indigo-500 to-purple-500 text-white py-3 rounded-full font-semibold hover:from-indigo-600 hover:to-purple-600 transition-all duration-300 transform hover:scale-105 neon-glow">
+                            Enroll Now
+                        </button>
+                    </div>
+
+                    <!-- DBMS Course -->
+                    <div class="course-card-unique p-8 group">
+                        <div class="text-center mb-6">
+                            <div class="w-20 h-20 mx-auto bg-gradient-to-r from-teal-500 to-blue-500 rounded-full flex items-center justify-center text-4xl mb-4 group-hover:scale-110 transition-transform duration-300">🗄️</div>
+                            <h3 class="text-2xl font-bold text-gray-800 mb-2">Database Systems</h3>
+                            <div class="w-16 h-1 bg-gradient-to-r from-teal-500 to-blue-500 mx-auto rounded-full"></div>
+                        </div>
+                        <p class="text-gray-600 mb-6 text-center">Complete DBMS course covering SQL, NoSQL, database design, optimization, and real-world applications.</p>
+                        <div class="text-center mb-6">
+                            <div class="text-sm text-gray-500 mb-2">⏱️ 8 weeks • 📊 Intermediate</div>
+                            <div class="flex items-center justify-center space-x-2">
+                                <span class="text-3xl font-bold text-teal-600">₹1199.00</span>
+                                <span class="text-gray-400 line-through">₹13,999</span>
+                                <!-- <span class="bg-red-500 text-white px-2 py-1 rounded-full text-xs">36% OFF</span> -->
+                            </div>
+                        </div>
+                        <button onclick="enrollCourse('Database Systems', 1200)" class="w-full bg-gradient-to-r from-teal-500 to-blue-500 text-white py-3 rounded-full font-semibold hover:from-teal-600 hover:to-blue-600 transition-all duration-300 transform hover:scale-105 neon-glow">
+                            Enroll Now
+                        </button>
+                    </div>
+                    
+                        <!-- view more courses from harsh academy live -->
+                        <div class="text-center mt-12 flex justify-center"></div>
+                            <a href="courses.html" target="_blank" class="inline-block bg-gradient-to-r from-purple-500 to-pink-500 text-white px-8 py-4 rounded-full font-bold text-lg hover:from-purple-600 hover:to-pink-600 transition-all duration-300 neon-glow transform hover:scale-105">
+                                View More Courses →
+                            </a>
+                        </div>
+            </div>
+        </section>
+
+        <!-- Features Section -->
+        <section id="features" class="py-20 bg-gradient-to-r from-gray-900 via-purple-900 to-gray-900">
+            <div class="container mx-auto px-6">
+                <h2 class="text-5xl font-bold text-center mb-16">
+                    <span class="holographic-text">Why Choose Us?</span>
+                </h2>
+                <div class="grid md:grid-cols-3 gap-12">
+                    <div class="text-center group">
+                        <div class="relative mb-8">
+                            <div class="w-24 h-24 mx-auto bg-gradient-to-r from-purple-500 to-pink-500 rounded-full flex items-center justify-center text-5xl group-hover:scale-110 transition-transform duration-300 neon-glow">📹</div>
+                            <div class="absolute inset-0 w-24 h-24 mx-auto bg-gradient-to-r from-purple-500 to-pink-500 rounded-full pulse-ring"></div>
+                        </div>
+                        <h3 class="text-2xl font-bold mb-4">Live Interactive Sessions</h3>
+                        <p class="text-gray-300 leading-relaxed">Experience real-time learning with live Zoom classes, instant doubt resolution, and interactive coding sessions.</p>
+                    </div>
+                    <div class="text-center group">
+                        <div class="relative mb-8">
+                            <div class="w-24 h-24 mx-auto bg-gradient-to-r from-blue-500 to-cyan-500 rounded-full flex items-center justify-center text-5xl group-hover:scale-110 transition-transform duration-300 neon-glow">👨‍🏫</div>
+                            <div class="absolute inset-0 w-24 h-24 mx-auto bg-gradient-to-r from-blue-500 to-cyan-500 rounded-full pulse-ring"></div>
+                        </div>
+                        <!-- doubt session  not an industry expert-->
+                        <h3 class="text-2xl font-bold mb-4">Live doubt session</h3>
+                        <p class="text-gray-300 leading-relaxed">Get your questions answered in real-time with dedicated doubt sessions after each class to ensure clarity and understanding.</p>
+                         
+                </div>
+                <!-- test series and coding competetion -->
+                    <div class="text-center group">
+                        <div class="relative mb-8">
+                            <div class="w-24 h-24 mx-auto bg-gradient-to-r from-green-500 to-emerald-500 rounded-full flex items-center justify-center text-5xl group-hover:scale-110 transition-transform duration-300 neon-glow">🏆</div>
+                            <div class="absolute inset-0 w-24 h-24 mx-auto bg-gradient-to-r from-green-500 to-emerald-500 rounded-full pulse-ring"></div>
+                        </div>
+                        <h3 class="text-2xl font-bold mb-4">Test Series & Coding Competitions</h3>
+                        <p class="text-gray-300 leading-relaxed">Enhance your skills with regular test series and coding competitions designed to prepare you for real-world challenges.</p>
+
+            </div>
+            </div>
+        </section>
+        <!-- meet our team solo founder profile -->
+        <section id="team" class="py-24 bg-gradient-to-r from-gray-900 via-purple-900 to-gray-900">
+            <div class="container mx-auto px-6">
+                <!-- Section Header -->
+                <div class="text-center mb-16">
+                    <h2 class="text-5xl font-bold mb-4">
+                        <span class="holographic-text">Meet Our Team</span>
+                    </h2>
+                    <p class="text-xl text-gray-300 max-w-2xl mx-auto">
+                        Learn from passionate AI Engineers and Educators dedicated to your success.
+                    </p>
+                </div>
+
+                <!-- Founder Card -->
+                <div class="flex justify-center">
+                    <div class="glass-effect p-8 rounded-3xl max-w-md relative group">
+                        <!-- Role Badge -->
+                        <div class="absolute -top-4 right-8 bg-gradient-to-r from-purple-500 to-pink-500 px-6 py-2 rounded-full text-white font-bold text-sm neon-glow">
+                            Founder & CEO
+                        </div>
+
+                        <!-- Profile Content -->
+                        <div class="flex flex-col items-center">
+                            <!-- Profile Image -->
+                            <div class="relative mb-6">
+                                <div class="w-70 h-60 rounded-full overflow-hidden border-4 border-purple-500 neon-glow">
+                                    <img src="../images/A32611.jpg"
+                                        alt="HARSH SUMAN"
+                                        class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500"
+                                    />
+                                </div>
+                                <div class="absolute inset-0 w-40 h-40 rounded-full pulse-ring"></div>
+                            </div>
+
+                            <!-- Profile Info -->
+                            <h3 class="text-3xl font-bold mb-2 holographic-text">HARSH SUMAN</h3>
+                            <p class="text-purple-300 text-lg mb-6">AI & Robotics Expert</p>
+                            
+                            <!-- Skills Tags -->
+                            <div class="flex flex-wrap gap-2 justify-center mb-8">
+                                <span class="px-3 py-1 bg-purple-900/50 rounded-full text-sm text-purple-300">AI/ML</span>
+                                <span class="px-3 py-1 bg-purple-900/50 rounded-full text-sm text-purple-300">Robotics</span>
+                                <span class="px-3 py-1 bg-purple-900/50 rounded-full text-sm text-purple-300">Python</span>
+                                <span class="px-3 py-1 bg-purple-900/50 rounded-full text-sm text-purple-300">DSA</span>
+                            </div>
+
+                            <!-- Portfolio Button -->
+                            <a href="../ceo_profile/ceo_profile.html" target="_blank"
+                               class="bg-gradient-to-r from-purple-500 to-pink-500 text-white px-8 py-3 rounded-full font-bold hover:from-purple-600 hover:to-pink-600 transition-all duration-300 transform hover:scale-105 neon-glow">
+                                View Portfolio →
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Enrollment Modal -->
+    <div id="enrollmentModal" class="fixed inset-0 bg-black bg-opacity-70 hidden items-center justify-center z-50 backdrop-blur-sm">
+        <div class="glass-effect rounded-3xl p-8 max-w-md w-full mx-4 border border-purple-500">
+            <h3 class="text-3xl font-bold mb-6 text-center holographic-text">Course Enrollment</h3>
+            <div id="courseDetails" class="mb-8 text-center">
+                <p class="text-gray-300 mb-2">Course: <span id="courseName" class="font-semibold text-white"></span></p>
+                <p class="text-gray-300 mb-4">Investment: <span id="courseAmount" class="font-bold text-2xl holographic-text"></span></p>
+            </div>
+            
+            <form id="enrollmentForm" class="space-y-6">
+                <div>
+                    <label for="studentName" class="block text-sm font-medium text-gray-300 mb-2">Full Name</label>
+                    <input type="text" id="studentName" name="studentName" required class="w-full px-4 py-3 bg-gray-800 border border-purple-500 rounded-xl focus:outline-none focus:ring-2 focus:ring-purple-500 text-white">
+                </div>
+                <div>
+                    <label for="studentEmail" class="block text-sm font-medium text-gray-300 mb-2">Email Address</label>
+                    <input type="email" id="studentEmail" name="studentEmail" required class="w-full px-4 py-3 bg-gray-800 border border-purple-500 rounded-xl focus:outline-none focus:ring-2 focus:ring-purple-500 text-white">
+                </div>
+                <div>
+                    <label for="studentPhone" class="block text-sm font-medium text-gray-300 mb-2">Phone Number</label>
+                    <input type="tel" id="studentPhone" name="studentPhone" required class="w-full px-4 py-3 bg-gray-800 border border-purple-500 rounded-xl focus:outline-none focus:ring-2 focus:ring-purple-500 text-white">
+                </div>
+                
+                <div class="flex space-x-4 mt-8">
+                    <button type="button" onclick="closeModal()" class="flex-1 px-6 py-3 border border-gray-500 rounded-xl text-gray-300 hover:bg-gray-800 transition-colors">Cancel</button>
+                    <button type="submit" class="flex-1 bg-gradient-to-r from-purple-500 to-pink-500 text-white px-6 py-3 rounded-xl hover:from-purple-600 hover:to-pink-600 transition-all duration-300 neon-glow">Proceed to Payment</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Success Modal -->
+    <div id="successModal" class="fixed inset-0 bg-black bg-opacity-70 hidden items-center justify-center z-50 backdrop-blur-sm">
+        <div class="glass-effect rounded-3xl p-8 max-w-md w-full mx-4 text-center border border-green-500">
+            <div class="text-8xl mb-6">✨</div>
+            <h3 class="text-3xl font-bold mb-4 holographic-text">Welcome Aboard!</h3>
+           <!-- add whatsapp group QR to join students to getting zoom links for classes  just after successful payment -->
+            <p class="text-gray-300 mb-8">Your enrollment was successful. Check your email for further details and join our WhatsApp group using the QR code below to get Zoom links for live classes.</p>
+            <img src="whatsapp-group-qr.png" alt="WhatsApp Group QR Code" class="mx-auto mb-6 w-40 h-40"/>
+            <button onclick="closeSuccessModal()" class="bg-gradient-to-r from-green-500 to-emerald-500 text-white px-8 py-3 rounded-xl hover:from-green-600 hover:to-emerald-600 transition-all duration-300 neon-glow">
+                Start Learning Journey
+            </button>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-black py-16 border-t border-purple-500">
+        <div class="container mx-auto px-6">
+            <div class="grid md:grid-cols-3 gap-12">
+                <div>
+                    <div class="flex items-center space-x-4 mb-6">
+                        <div class="w-12 h-12 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full flex items-center justify-center neon-glow">
+                           <img src="../images/WhatsApp Image 2025-10-25 at 13.40.45.jpeg" alt="Harsh Academy logo" class="w-12 h-12 rounded-full object-cover"/>
+                        </div>
+                        <div>
+                            <h3 class="text-2xl font-bold holographic-text">Harsh Academy</h3>
+                            <p class="text-purple-300 text-sm">LIVE</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-400 leading-relaxed">Empowering the next generation of tech innovators through cutting-edge education and mentorship.</p>
+                </div>
+                <div>
+                    <h3 class="text-xl font-bold mb-6 text-white">Quick Links</h3>
+                    <ul class="space-y-3">
+                        <li><a href="#courses" class="text-gray-400 hover:text-purple-300 transition-colors">🎯 Courses</a></li>
+                        <li><a href="#features" class="text-gray-400 hover:text-purple-300 transition-colors">⭐ Features</a></li>
+                        <li><a href="contact.html" class="text-gray-400 hover:text-purple-300 transition-colors">📞 Contact</a></li>
+                        <li><a href="privacy.html" class="text-gray-400 hover:text-purple-300 transition-colors">🔐 Privacy Policy</a></li>
+
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-xl font-bold mb-6 text-white">Get in Touch</h3>
+                    <div class="flex items-center space-x-3">
+                         <a href="mailto:harshsuman15@gmail.com" aria-label="Email" class="w-10 h-10 flex items-center justify-center bg-gray-800 rounded-full hover:bg-blue-500 transition">
+                            <i class="ri-mail-fill text-white text-lg"></i>
+                        </a>
+                        <a href="tel:+917856934617" aria-label="Phone" class="w-10 h-10 flex items-center justify-center bg-gray-800 rounded-full hover:bg-red-500 transition">
+                            <i class="ri-phone-line text-white text-lg"></i>
+                        </a>
+                    </div>
+                       
+                    </div>
+                </div>
+            </div>
+            <div class="border-t border-gray-800 mt-12 pt-8 text-center">
+                <p class="text-gray-500">&copy; 2025 HARSH ACADEMY LIVE . All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+    <script>
+        // Mobile Menu Toggle
+        const mobileMenuButton = document.getElementById('mobileMenuButton');
+        const mobileMenu = document.getElementById('mobileMenu');
+        mobileMenuButton.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+    </script>
+    <script src="../scripts/scripts.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login-Harsh Academy Live</title>
+     <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        .login-container {
+            max-width: 400px;
+            margin: 50px auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
+        input[type="email"], input[type="password"] {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        .btn-login {
+            background-color: #6b46c1;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            width: 100%;
+        }
+        .btn-login:hover {
+            background-color: #553c9a;
+        }
+    </style>
+</head>
+<body>
+    <div class="login-container bg-white shadow-lg rounded-lg p-6">
+        <h2 class="text-2xl font-bold text-center text-gray-800 mb-6">Login to Harsh Academy Live</h2>
+
+        <div class="flex justify-center gap-2 mb-4">
+            <button id="tab-login" class="px-4 py-2 rounded-md bg-purple-600 text-white text-sm">Login</button>
+            <button id="tab-register" class="px-4 py-2 rounded-md bg-gray-100 text-gray-700 text-sm">Register</button>
+        </div>
+
+        <div id="profileSection" class="hidden text-center mb-6">
+            <img id="profilePic" class="w-24 h-24 rounded-full mx-auto mb-3" src="" alt="Profile Picture">
+            <p id="userName" class="text-lg font-medium text-gray-800"></p>
+            <button onclick="signOut()" class="mt-3 text-sm text-purple-600 hover:text-purple-500">Sign Out</button>
+        </div>
+
+        <!-- LOGIN FORM -->
+        <form id="loginForm" action="/login" method="POST" class="space-y-4">
+            <div class="form-group">
+                <label for="email" class="text-sm font-medium text-gray-700">Email Address</label>
+                <input type="email" id="email" name="email" required 
+                    class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-purple-500 focus:border-purple-500">
+            </div>
+            <div class="form-group" id="passwordGroup">
+                <label for="password" class="text-sm font-medium text-gray-700">Password</label>
+                <input type="password" id="password" name="password" required 
+                    class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-purple-500 focus:border-purple-500">
+            </div>
+
+            <div class="flex items-center justify-between text-sm">
+                <label class="flex items-center gap-2 text-gray-600">
+                    <input type="checkbox" id="useOtpCheckbox" />
+                    Use OTP instead of password
+                </label>
+                <a href="#" id="forgotLink" class="text-purple-600 hover:text-purple-500">Forgot?</a>
+            </div>
+
+            <div id="otpControls" class="hidden space-y-3">
+                <div>
+                    <label class="text-sm font-medium text-gray-700">OTP delivery method</label>
+                    <div class="mt-1 flex gap-2">
+                        <button type="button" id="otpEmailBtn" class="flex-1 py-2 px-3 border rounded-md text-sm bg-white">Email</button>
+                        <button type="button" id="otpPhoneBtn" class="flex-1 py-2 px-3 border rounded-md text-sm bg-white">Phone</button>
+                    </div>
+                </div>
+
+                <div id="otpSendSection" class="space-y-2">
+                    <input type="text" id="otpTarget" placeholder="Enter email or phone" 
+                        class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md text-sm">
+                    <div class="flex gap-2">
+                        <button type="button" id="sendOtpBtn" class="flex-1 py-2 px-4 bg-purple-600 text-white rounded-md text-sm">Send OTP</button>
+                        <button type="button" id="resendOtpBtn" class="flex-1 py-2 px-4 bg-gray-100 text-gray-700 rounded-md text-sm hidden">Resend</button>
+                    </div>
+                    <p id="otpSendMsg" class="text-sm text-green-600 hidden"></p>
+                </div>
+
+                <div id="otpVerifySection" class="hidden space-y-2">
+                    <input type="text" id="otpInput" placeholder="Enter OTP" maxlength="8"
+                        class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md text-sm">
+                    <input type="hidden" id="otpSessionId" value="">
+                    <button type="button" id="verifyOtpBtn" class="w-full py-2 px-4 bg-purple-600 text-white rounded-md text-sm">Verify OTP</button>
+                    <p id="otpVerifyMsg" class="text-sm text-red-600 hidden"></p>
+                </div>
+            </div>
+
+            <div>
+                <button type="submit" id="loginSubmitBtn"
+                    class="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-purple-600 hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500 transition duration-150 ease-in-out">
+                    Login
+                </button>
+            </div>
+
+            <div class="relative my-4">
+                <div class="absolute inset-0 flex items-center">
+                    <div class="w-full border-t border-gray-300"></div>
+                </div>
+                <div class="relative flex justify-center text-sm">
+                    <span class="px-2 bg-white text-gray-500">Or continue with</span>
+                </div>
+            </div>
+
+            <div>
+                <button type="button" onclick="signInWithGoogle()" 
+                    class="w-full flex justify-center items-center py-2 px-4 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500">
+                    <img src="https://www.google.com/favicon.ico" class="w-5 h-5 mr-2" alt="Google logo">
+                    Sign in with Google
+                </button>
+            </div>
+        </form>
+
+        <!-- REGISTER FORM (hidden by default) -->
+        <form id="registerForm" class="space-y-4 hidden mt-4" onsubmit="handleRegister(event)">
+            <div class="form-group">
+                <label for="regName" class="text-sm font-medium text-gray-700">Full Name</label>
+                <input type="text" id="regName" name="name" required
+                    class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm text-sm">
+            </div>
+            <div class="form-group">
+                <label for="regEmail" class="text-sm font-medium text-gray-700">Email</label>
+                <input type="email" id="regEmail" name="email"
+                    class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm text-sm">
+            </div>
+            <div class="form-group">
+                <label for="regPhone" class="text-sm font-medium text-gray-700">Phone (optional)</label>
+                <input type="tel" id="regPhone" name="phone"
+                    class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm text-sm">
+            </div>
+
+            <div class="flex items-center justify-between text-sm">
+                <label class="flex items-center gap-2 text-gray-600">
+                    <input type="checkbox" id="regUseOtpCheckbox" />
+                    Use OTP for verification
+                </label>
+            </div>
+
+            <div id="regOtpControls" class="hidden space-y-3">
+                <div>
+                    <label class="text-sm font-medium text-gray-700">OTP delivery method</label>
+                    <div class="mt-1 flex gap-2">
+                        <button type="button" id="regOtpEmailBtn" class="flex-1 py-2 px-3 border rounded-md text-sm bg-white">Email</button>
+                        <button type="button" id="regOtpPhoneBtn" class="flex-1 py-2 px-3 border rounded-md text-sm bg-white">Phone</button>
+                    </div>
+                </div>
+
+                <div id="regOtpSendSection" class="space-y-2">
+                    <input type="text" id="regOtpTarget" placeholder="Enter email or phone"
+                        class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md text-sm">
+                    <div class="flex gap-2">
+                        <button type="button" id="regSendOtpBtn" class="flex-1 py-2 px-4 bg-purple-600 text-white rounded-md text-sm">Send OTP</button>
+                        <button type="button" id="regResendOtpBtn" class="flex-1 py-2 px-4 bg-gray-100 text-gray-700 rounded-md text-sm hidden">Resend</button>
+                    </div>
+                    <p id="regOtpSendMsg" class="text-sm text-green-600 hidden"></p>
+                </div>
+
+                <div id="regOtpVerifySection" class="hidden space-y-2">
+                    <input type="text" id="regOtpInput" placeholder="Enter OTP" maxlength="8"
+                        class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md text-sm">
+                    <input type="hidden" id="regOtpSessionId" value="">
+                    <button type="button" id="regVerifyOtpBtn" class="w-full py-2 px-4 bg-purple-600 text-white rounded-md text-sm">Verify OTP</button>
+                    <p id="regOtpVerifyMsg" class="text-sm text-red-600 hidden"></p>
+                </div>
+            </div>
+
+            <div>
+                <button type="submit" id="registerSubmitBtn"
+                    class="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-purple-600 hover:bg-purple-700">
+                    Register
+                </button>
+            </div>
+        </form>
+    </div>
+
+    <script>
+        // Tab toggles
+        const tabLogin = document.getElementById('tab-login');
+        const tabRegister = document.getElementById('tab-register');
+        const loginForm = document.getElementById('loginForm');
+        const registerForm = document.getElementById('registerForm');
+
+        tabLogin.addEventListener('click', () => {
+            tabLogin.classList.replace('bg-gray-100','bg-purple-600');
+            tabLogin.classList.replace('text-gray-700','text-white');
+            tabRegister.classList.replace('bg-purple-600','bg-gray-100');
+            tabRegister.classList.replace('text-white','text-gray-700');
+            loginForm.classList.remove('hidden');
+            registerForm.classList.add('hidden');
+        });
+
+        tabRegister.addEventListener('click', () => {
+            tabRegister.classList.replace('bg-gray-100','bg-purple-600');
+            tabRegister.classList.replace('text-gray-700','text-white');
+            tabLogin.classList.replace('bg-purple-600','bg-gray-100');
+            tabLogin.classList.replace('text-white','text-gray-700');
+            registerForm.classList.remove('hidden');
+            loginForm.classList.add('hidden');
+        });
+
+        // OTP controls for Login
+        const useOtpCheckbox = document.getElementById('useOtpCheckbox');
+        const otpControls = document.getElementById('otpControls');
+        const passwordGroup = document.getElementById('passwordGroup');
+        const otpEmailBtn = document.getElementById('otpEmailBtn');
+        const otpPhoneBtn = document.getElementById('otpPhoneBtn');
+        const otpTarget = document.getElementById('otpTarget');
+        const sendOtpBtn = document.getElementById('sendOtpBtn');
+        const resendOtpBtn = document.getElementById('resendOtpBtn');
+        const otpSendMsg = document.getElementById('otpSendMsg');
+        const otpVerifySection = document.getElementById('otpVerifySection');
+        const otpInput = document.getElementById('otpInput');
+        const otpSessionId = document.getElementById('otpSessionId');
+        const verifyOtpBtn = document.getElementById('verifyOtpBtn');
+        let otpMethod = 'email';
+
+        useOtpCheckbox.addEventListener('change', () => {
+            const use = useOtpCheckbox.checked;
+            otpControls.classList.toggle('hidden', !use);
+            passwordGroup.classList.toggle('hidden', use);
+            document.getElementById('loginSubmitBtn').disabled = use; // disable password submit while OTP flow active
+        });
+
+        otpEmailBtn.addEventListener('click', () => { otpMethod = 'email'; otpEmailBtn.classList.add('bg-purple-50'); otpPhoneBtn.classList.remove('bg-purple-50'); });
+        otpPhoneBtn.addEventListener('click', () => { otpMethod = 'phone'; otpPhoneBtn.classList.add('bg-purple-50'); otpEmailBtn.classList.remove('bg-purple-50'); });
+
+        sendOtpBtn.addEventListener('click', () => {
+            const target = otpTarget.value.trim();
+            if (!target) { alert('Enter email or phone to receive OTP'); return; }
+            sendOtp({ flow: 'login', method: otpMethod, target }, otpSendMsg, otpSessionId, otpVerifySection, resendOtpBtn);
+        });
+
+        resendOtpBtn.addEventListener('click', () => {
+            const target = otpTarget.value.trim();
+            if (!target) { alert('Enter email or phone to receive OTP'); return; }
+            sendOtp({ flow: 'login', method: otpMethod, target, resend: true }, otpSendMsg, otpSessionId, otpVerifySection, resendOtpBtn);
+        });
+
+        verifyOtpBtn.addEventListener('click', async () => {
+            const otp = otpInput.value.trim();
+            const session = otpSessionId.value;
+            if (!otp || !session) { alert('Provide OTP and ensure you requested one'); return; }
+            const ok = await verifyOtp({ sessionId: session, otp });
+            if (ok) {
+                // For login: submit verified info to server or mark as verified and proceed
+                // Example: automatically post to /login-otp with sessionId
+                const resp = await fetch('/login-otp', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ sessionId: session })
+                });
+                if (resp.ok) {
+                    window.location.reload();
+                } else {
+                    alert('Server failed to complete OTP login.');
+                }
+            }
+        });
+
+        // OTP controls for Register
+        const regUseOtpCheckbox = document.getElementById('regUseOtpCheckbox');
+        const regOtpControls = document.getElementById('regOtpControls');
+        const regOtpEmailBtn = document.getElementById('regOtpEmailBtn');
+        const regOtpPhoneBtn = document.getElementById('regOtpPhoneBtn');
+        const regOtpTarget = document.getElementById('regOtpTarget');
+        const regSendOtpBtn = document.getElementById('regSendOtpBtn');
+        const regResendOtpBtn = document.getElementById('regResendOtpBtn');
+        const regOtpSendMsg = document.getElementById('regOtpSendMsg');
+        const regOtpVerifySection = document.getElementById('regOtpVerifySection');
+        const regOtpInput = document.getElementById('regOtpInput');
+        const regOtpSessionId = document.getElementById('regOtpSessionId');
+        const regVerifyOtpBtn = document.getElementById('regVerifyOtpBtn');
+        const regOtpVerifyMsg = document.getElementById('regOtpVerifyMsg');
+        let regOtpMethod = 'email';
+
+        regUseOtpCheckbox.addEventListener('change', () => {
+            regOtpControls.classList.toggle('hidden', !regUseOtpCheckbox.checked);
+            document.getElementById('registerSubmitBtn').disabled = regUseOtpCheckbox.checked; // require verification first
+        });
+
+        regOtpEmailBtn.addEventListener('click', () => { regOtpMethod = 'email'; regOtpEmailBtn.classList.add('bg-purple-50'); regOtpPhoneBtn.classList.remove('bg-purple-50'); });
+        regOtpPhoneBtn.addEventListener('click', () => { regOtpMethod = 'phone'; regOtpPhoneBtn.classList.add('bg-purple-50'); regOtpEmailBtn.classList.remove('bg-purple-50'); });
+
+        regSendOtpBtn.addEventListener('click', () => {
+            const target = regOtpTarget.value.trim();
+            if (!target) { alert('Enter email or phone to receive OTP'); return; }
+            sendOtp({ flow: 'register', method: regOtpMethod, target }, regOtpSendMsg, regOtpSessionId, regOtpVerifySection, regResendOtpBtn);
+        });
+
+        regResendOtpBtn.addEventListener('click', () => {
+            const target = regOtpTarget.value.trim();
+            if (!target) { alert('Enter email or phone to receive OTP'); return; }
+            sendOtp({ flow: 'register', method: regOtpMethod, target, resend: true }, regOtpSendMsg, regOtpSessionId, regOtpVerifySection, regResendOtpBtn);
+        });
+
+        regVerifyOtpBtn.addEventListener('click', async () => {
+            const otp = regOtpInput.value.trim();
+            const session = regOtpSessionId.value;
+            if (!otp || !session) { alert('Provide OTP and ensure you requested one'); return; }
+            const ok = await verifyOtp({ sessionId: session, otp });
+            if (ok) {
+                // On successful registration verification, enable submit
+                document.getElementById('registerSubmitBtn').disabled = false;
+                regOtpVerifyMsg.classList.add('hidden');
+                regOtpSendMsg.textContent = 'Verified — you can complete registration.';
+                regOtpSendMsg.classList.remove('hidden');
+            }
+        });
+
+        async function sendOtp({ flow, method, target, resend=false }, msgEl, sessionInputEl, revealVerifyEl, showResendBtn) {
+            msgEl.classList.add('hidden');
+            try {
+                const resp = await fetch('/send-otp', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ flow, method, target, resend })
+                });
+                const data = await resp.json();
+                if (resp.ok && data.sessionId) {
+                    sessionInputEl.value = data.sessionId;
+                    msgEl.textContent = 'OTP sent. Check your ' + method + '.';
+                    msgEl.classList.remove('hidden');
+                    revealVerifyEl.classList.remove('hidden');
+                    if (showResendBtn) showResendBtn.classList.remove('hidden');
+                } else {
+                    alert(data.message || 'Failed to send OTP');
+                }
+            } catch (e) {
+                alert('Network error sending OTP');
+            }
+        }
+
+        async function verifyOtp({ sessionId, otp }) {
+            try {
+                const resp = await fetch('/verify-otp', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ sessionId, otp })
+                });
+                const data = await resp.json();
+                if (resp.ok && data.verified) {
+                    return true;
+                } else {
+                    alert(data.message || 'Invalid OTP');
+                    return false;
+                }
+            } catch (e) {
+                alert('Network error verifying OTP');
+                return false;
+            }
+        }
+
+        // Prevent default form submit when OTP flows active (login)
+        loginForm.addEventListener('submit', (e) => {
+            if (useOtpCheckbox.checked) {
+                e.preventDefault();
+                alert('Complete OTP verification first.');
+            }
+        });
+
+        // Registration form submit handler
+        async function handleRegister(e) {
+            e.preventDefault();
+            
+            if (regUseOtpCheckbox.checked && !regOtpSessionId.value) {
+                alert('Please verify OTP before completing registration.');
+                return;
+            }
+
+            const formData = new FormData(registerForm);
+            try {
+                const response = await fetch('/api/register', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(Object.fromEntries(formData)),
+                });
+                
+                if (response.ok) {
+                    alert('Registration successful!');
+                    window.location.reload();
+                } else {
+                    alert('Registration failed. Please try again.');
+                }
+            } catch (error) {
+                console.error('Registration error:', error);
+                alert('Registration failed. Please try again later.');
+            }
+        }
+    </script>
+
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
+    <script>
+        // Add your Google Client ID here
+        const googleClientId = 'YOUR_GOOGLE_CLIENT_ID';
+
+        function signInWithGoogle() {
+            gapi.load('auth2', function() {
+                gapi.auth2.init({
+                    client_id: googleClientId
+                }).then(function(auth2) {
+                    auth2.signIn().then(function(googleUser) {
+                        const profile = googleUser.getBasicProfile();
+                        document.getElementById('loginForm').classList.add('hidden');
+                        document.getElementById('profileSection').classList.remove('hidden');
+                        document.getElementById('profilePic').src = profile.getImageUrl();
+                        document.getElementById('userName').textContent = profile.getName();
+                    });
+                });
+            });
+        }
+
+        function signOut() {
+            const auth2 = gapi.auth2.getAuthInstance();
+            auth2.signOut().then(function() {
+                document.getElementById('loginForm').classList.remove('hidden');
+                document.getElementById('profileSection').classList.add('hidden');
+            });
+        }
+    </script>
+</body>
+</html>

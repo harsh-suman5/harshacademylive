@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Harsh Academy Live - Courses</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.min.css" rel="stylesheet">
+    <style>
+      body {
+            box-sizing: border-box;
+        }
+        
+        .neon-glow {
+            box-shadow: 0 0 20px rgba(139, 92, 246, 0.3), 0 0 40px rgba(139, 92, 246, 0.1);
+        }
+        
+        .floating-animation {
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+        
+        .morphing-bg {
+            background: linear-gradient(-45deg, #667eea, #764ba2, #f093fb, #f5576c);
+            background-size: 400% 400%;
+            animation: gradient 15s ease infinite;
+        }
+        
+        @keyframes gradient {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        
+        .glass-effect {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .hexagon {
+            width: 100px;
+            height: 100px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+        }
+        
+        .course-card-unique {
+            background: linear-gradient(145deg, #ffffff, #f0f0f0);
+            border-radius: 25px;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        
+        .course-card-unique::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(139, 92, 246, 0.1), transparent);
+            transition: left 0.5s;
+        }
+        
+        .course-card-unique:hover::before {
+            left: 100%;
+        }
+        
+        .course-card-unique:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
+        }
+        
+        .tech-pattern {
+            background-image: 
+                radial-gradient(circle at 25px 25px, rgba(139, 92, 246, 0.1) 2px, transparent 2px),
+                radial-gradient(circle at 75px 75px, rgba(139, 92, 246, 0.1) 2px, transparent 2px);
+            background-size: 100px 100px;
+        }
+        
+        .pulse-ring {
+            animation: pulse-ring 2s cubic-bezier(0.455, 0.03, 0.515, 0.955) infinite;
+        }
+        
+        @keyframes pulse-ring {
+            0% { transform: scale(0.8); opacity: 1; }
+            80%, 100% { transform: scale(1.2); opacity: 0; }
+        }
+        
+        .zigzag-border {
+            position: relative;
+        }
+        
+        .zigzag-border::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            right: 0;
+            height: 20px;
+            background: linear-gradient(45deg, transparent 33.33%, #667eea 33.33%, #667eea 66.66%, transparent 66.66%),
+                        linear-gradient(-45deg, transparent 33.33%, #764ba2 33.33%, #764ba2 66.66%, transparent 66.66%);
+            background-size: 20px 20px;
+        }
+        
+        .holographic-text {
+            background: linear-gradient(45deg, #667eea, #764ba2, #f093fb, #f5576c);
+            background-size: 400% 400%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: gradient 3s ease infinite;
+        }
+        
+        .orbit-animation {
+            animation: orbit 20s linear infinite;
+        }
+        
+        @keyframes orbit {
+            from { transform: rotate(0deg) translateX(150px) rotate(0deg); }
+            to { transform: rotate(360deg) translateX(150px) rotate(-360deg); }
+        }
+    </style>
+</head>
+<body>
+     <!-- Floating Elements -->
+    <div class="fixed inset-0 overflow-hidden pointer-events-none z-0">
+        <div class="absolute top-20 left-10 hexagon floating-animation opacity-20"></div>
+        <div class="absolute top-40 right-20 w-16 h-16 bg-purple-500 rounded-full floating-animation opacity-30" style="animation-delay: -2s;"></div>
+        <div class="absolute bottom-40 left-1/4 w-12 h-12 bg-pink-500 rounded-full floating-animation opacity-25" style="animation-delay: -4s;"></div>
+        <div class="absolute top-1/3 right-1/3 hexagon floating-animation opacity-15" style="animation-delay: -1s;"></div>
+    </div>
+
+    <!-- Header -->
+    <header class="relative z-10">
+        <nav class="bg-blue bg-opacity-70 backdrop-blur-sm border-b border-purple-500">
+            <div class="container mx-auto px-6 py-4">
+                <div class="flex items-center justify-between">
+                    <div class="flex items-center space-x-4">
+                        <div class="relative">
+                            <div class="w-12 h-12 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full flex items-center justify-center neon-glow">
+                                <img src="../images/WhatsApp Image 2025-10-25 at 13.40.45.jpeg" alt="Harsh Academy logo" class="w-12 h-12 rounded-full object-cover"/>
+                            </div>
+                            <div class="absolute inset-0 w-12 h-12 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full pulse-ring"></div>
+                        </div>
+                        <div>
+                            <h1 class="text-2xl font-bold holographic-text">Harsh Academy</h1>
+                            <p class="text-xs text-purple-300">LIVE</p>
+                        </div>
+                    </div>
+                    <div class="hidden md:flex space-x-8">
+                        <a href="#courses" class="relative group">
+                            <span class="text-white hover:text-purple-300 transition-colors">Courses</span>
+                            <div class="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-purple-500 to-pink-500 group-hover:w-full transition-all duration-300"></div>
+                        </a>
+                        <a href="#about" class="relative group">
+                            <span class="text-white hover:text-purple-300 transition-colors">About</span>
+                            <div class="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-purple-500 to-pink-500 group-hover:w-full transition-all duration-300"></div>
+                        </a>
+                       
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+<!-- explore all courses  -->
+ <section id="courses" class="py-20 tech-pattern relative">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-16">
+                    <h2 class="text-5xl font-bold mb-4">
+                        <span class="holographic-text">Premium Courses</span>
+                    </h2>
+                    <p class="text-xl text-purple-400 max-w-3xl mx-auto">Cutting-edge curriculum designed by Harsh sir. All classes conducted live on Zoom with interactive sessions and personalized mentorship.</p>
+                </div>
+                
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <!-- AI & ML Course -->
+                    <div class="course-card-unique p-8 group">
+                        <div class="text-center mb-6">
+                            <div class="w-20 h-20 mx-auto bg-gradient-to-r from-purple-500 to-pink-500 rounded-full flex items-center justify-center text-4xl mb-4 group-hover:scale-110 transition-transform duration-300">🤖</div>
+                            <h3 class="text-2xl font-bold text-gray-800 mb-2">Introduction to AI & ML</h3>
+                            <div class="w-16 h-1 bg-gradient-to-r from-purple-500 to-pink-500 mx-auto rounded-full"></div>
+                        </div>
+                        <p class="text-gray-600 mb-6 text-center">Perfect starting point for beginners to learn AI/ML fundamentals and basic Python implementation.</p>
+                        <div class="text-center mb-6">
+                            <div class="text-sm text-gray-500 mb-2">⏱️ 8 weeks • 📊 Beginner Friendly</div>
+                            <div class="flex items-center justify-center space-x-2">
+                                <span class="text-3xl font-bold text-purple-600">₹1599.00</span>
+                                <span class="text-gray-400 line-through">₹19,999</span>
+                                <span class="bg-red-500 text-white px-2 py-1 rounded-full text-xs">92% OFF</span>
+                            </div>
+                        </div>
+                        <button onclick="enrollCourse('Introduction to AI & ML', 1499)" class="w-full bg-gradient-to-r from-purple-500 to-pink-500 text-white py-3 rounded-full font-semibold hover:from-purple-600 hover:to-pink-600 transition-all duration-300 transform hover:scale-105 neon-glow">
+                            Enroll Now
+                        </button>
+                    </div>
+                    <!-- web development course -->
+                     <div class="course-card-unique p-8 group">
+                        <div class="text-center mb-6">'
+                            <div class="w20 h-20 mx-auto bg-gradient-to-r  from purple-500 to-pink-500 rounded-full flex items-center justify-center text-4xl mb-4 group-hover:scale-110 transition-transform duration-300">🌐</div>
+                            <h3 class="text-2xl font-bold text-gray-800 mb-2">Full Stack Web Development</h3>
+                            <div class="w-16 h-1 bg-gradient-to-r from-purple-500 to-pink-500 mx-auto rounded-full"></div>
+                            </div>
+                        <p class="text-gray-600 mb-6 text-center">Comprehensive course covering front-end and back-end web development technologies.</p>
+                        <div class="text-center mb-6">
+                            <div class="text-sm text-gray-500 mb-2">⏱️ 12 weeks • 🛠️ Intermediate</div>
+                            <div class="flex items-center justify-center space-x-2">
+                                <span class="text-3xl font-bold text-purple-600">₹1999.00</span>
+                                <span class="text-gray-400 line-through">₹24,999</span>
+                                <span class="bg-red-500 text-white px-2 py-1 rounded-full text-xs">92% OFF</span>
+                                </div>
+                                </div>
+                        <button onclick="enrollCourse('Full Stack Web Development', 1999)" class="w-full bg-gradient-to-r from-purple-500 to-pink-500 text-white py-3 rounded-full font-semibold hover:from-purple-600 hover:to-pink-600 transition-all duration-300 transform hover:scale-105 neon-glow">
+                            Enroll Now
+                        </button>
+
+
+                        </div>
+
+                     </div>
+                    </div>
+            </div>
+        </section>
+         <!-- Footer -->
+    <footer class="bg-black py-16 border-t border-purple-500">
+        <div class="container mx-auto px-6">
+            <div class="grid md:grid-cols-3 gap-12">
+                <div>
+                    <div class="flex items-center space-x-4 mb-6">
+                        <div class="w-12 h-12 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full flex items-center justify-center neon-glow">
+                           <img src="../images/WhatsApp Image 2025-10-25 at 13.40.45.jpeg" alt="Harsh Academy logo" class="w-12 h-12 rounded-full object-cover"/>
+                        </div>
+                        <div>
+                            <h3 class="text-2xl font-bold holographic-text">Harsh Academy</h3>
+                            <p class="text-purple-300 text-sm">LIVE</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-400 leading-relaxed">Empowering the next generation of tech innovators through cutting-edge education and mentorship.</p>
+                </div>
+                <div>
+                    <h3 class="text-xl font-bold mb-6 text-white">Quick Links</h3>
+                    <ul class="space-y-3">
+                        <li><a href="#courses" class="text-gray-400 hover:text-purple-300 transition-colors">🎯 Courses</a></li>
+                        <li><a href="index.html#features" class="text-gray-400 hover:text-purple-300 transition-colors">⭐ Features</a></li>
+                        <li><a href="contact.html" class="text-gray-400 hover:text-purple-300 transition-colors">📞 Contact</a></li>
+
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-xl font-bold mb-6 text-white">Get in Touch</h3>
+                    <div class="flex items-center space-x-3">
+                         <a href="mailto:harshsuman15@gmail.com" aria-label="Email" class="w-10 h-10 flex items-center justify-center bg-gray-800 rounded-full hover:bg-blue-500 transition">
+                            <i class="ri-mail-fill text-white text-lg"></i>
+                        </a>
+                        <a href="tel:+917856934617" aria-label="Phone" class="w-10 h-10 flex items-center justify-center bg-gray-800 rounded-full hover:bg-red-500 transition">
+                            <i class="ri-phone-line text-white text-lg"></i>
+                        </a>
+                    </div>
+                       
+                    </div>
+                </div>
+            </div>
+            <div class="border-t border-gray-800 mt-12 pt-8 text-center">
+                <p class="text-gray-500">&copy; 2025 HARSH ACADEMY Live . All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+                    
+
+    
+
+
+
+    
+</body>
+</html>
